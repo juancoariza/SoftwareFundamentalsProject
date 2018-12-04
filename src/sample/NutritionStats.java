@@ -90,16 +90,21 @@ public class NutritionStats extends User implements Initializable {
         weightLossLineGraph.getData().add(series);
     }
 
-    public void populateBarGraph() {
+     public void populateBarGraph(int valuePro, int valueCarb, int valueFat) {
+
         macrosBarGraph.setTitle("Macronutrients Distribution");
         macrosBarGraph.getXAxis().setLabel("Macronutrients");
         macrosBarGraph.getYAxis().setLabel("Value");
 
-        //Add while loop here
+        NutritionTracker.CARB += valueCarb;
+        NutritionTracker.FATS += valueFat;
+        NutritionTracker.PROTEIN += valuePro;
+
         XYChart.Series series = new XYChart.Series();
-        series.getData().add(new XYChart.Data("Protein", 15));
-        series.getData().add(new XYChart.Data("Carbs", 40));
-        series.getData().add(new XYChart.Data("Fats", 8));
+        series.getData().add(new XYChart.Data("Protein", NutritionTracker.PROTEIN));
+        series.getData().add(new XYChart.Data("Carbs", NutritionTracker.CARB));
+        series.getData().add(new XYChart.Data("Fats", NutritionTracker.FATS));
+
         macrosBarGraph.getData().add(series);
 
     }
